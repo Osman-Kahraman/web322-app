@@ -5,8 +5,8 @@ been copied manually or electronically from any other source (including 3rd part
 Name: Osman KAHRAMAN
 Student ID: 172781221
 Date: 04/02/2025
-Cyclic Web App URL: _______________________________________________________
-GitHub Repository URL: ______________________________________________________
+Cyclic Web App URL: https://replit.com/@okahraman2/web322-app
+GitHub Repository URL: https://github.com/Osman-Kahraman/web322-app
 ********************************************************************************/
 
 const express = require('express');
