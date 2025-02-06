@@ -6,6 +6,7 @@ Name: Osman KAHRAMAN
 Student ID: 172781221
 Date: 04/02/2025
 Cyclic Web App URL: https://replit.com/@okahraman2/web322-app
+https://replit.com/@okahraman2/web322-app?v=1
 GitHub Repository URL: https://github.com/Osman-Kahraman/web322-app
 ********************************************************************************/
 
