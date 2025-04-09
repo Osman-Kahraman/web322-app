@@ -1,0 +1,48 @@
+<div class="table-responsive">
+    <h2>Items
+        <a href="/items/add" class="c3">+</a>
+    </h2>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Category ID</th>
+                <th>Post Date</th>
+                <th>Price</th>
+                <th>Published?</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (items.length) { %>
+                <% items.forEach(item => { %>
+                <tr>
+                    <td>
+                        <p><%= item.id %></p>
+                    </td>
+                    <td>
+                        <p><%= item.category %></p>
+                    </td>
+                    <td>
+                        <p><%= new Date(item.postDate).toLocaleDateString() %></p>
+                    </td>
+                    <td>
+                        <p>$<%= parseFloat(item.price).toFixed(2) %></p>
+                    </td>
+                    <td>
+                        <p><%= item.published ? 'Yes' : 'No' %></p>
+                    </td>
+                    <td class="text-right">
+                        <a href="/items/delete/<%= item.id %>" 
+                        class="c2" 
+                        onclick="return confirm('Are you sure you want to delete this item buddy?');">
+                            x
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+</div>

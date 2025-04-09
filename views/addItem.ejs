@@ -1,0 +1,103 @@
+<div class="intro" style="margin-top: 5%; margin-bottom: 5%;">
+    <form method="post" action="/items/add" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Feature Image</legend>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input
+                  class="form-control"
+                  id="featureImage"
+                  name="featureImage"
+                  type="file"
+                />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <fieldset>
+          <legend>Post Content</legend>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="title">Item Name:</label>
+                <input class="form-control" id="title" name="title" type="text" />
+              </div>
+            </div>
+            </div>
+          <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="price">Price:</label>
+                <input class="form-control" id="price" name="price" type="text" />
+              </div>
+            </div>
+          </div>
+            <br />
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="body">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="body"
+                  name="body"
+                  rows="15"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" name="category" id="category">
+                  <option value="1">Home, Garden</option>
+                  <option value="2">Electronics, Computers, Video Games</option>
+                  <option value="3">Clothing</option>
+                  <option value="4">Sports & Outdoors</option>
+                  <option value="5">Pets</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label for="published">Visibility:</label>
+                  <div class="checkbox-wrapper">
+                      <label class="checkbox" style="cursor: pointer; margin-left: 10px;">
+                          <input 
+                              class="checkbox__trigger visuallyhidden" 
+                              type="checkbox" 
+                              name="published"
+                              value="true"
+                          />
+                          <span class="checkbox__symbol">
+                              <svg
+                                  aria-hidden="true"
+                                  class="icon-checkbox"
+                                  width="28px"
+                                  height="28px"
+                                  viewBox="0 0 28 28"
+                                  version="1"
+                              >
+                                  <path d="M4 14l8 7L24 7"></path>
+                              </svg>
+                          </span>
+                          <p class="checkbox__textwrapper">Published</p>
+                      </label>
+                  </div>
+              </div>
+          </div>
+        </fieldset>
+        <hr />
+        <input
+          type="submit"
+          class="c4"
+          value="Add Post"
+        />
+        <br /><br /><br />
+      </form>
+</div>

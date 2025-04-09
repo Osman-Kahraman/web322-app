@@ -1,0 +1,113 @@
+<div class="row">
+    <section class="main col-md-9">
+        <% if (data.item) {%>
+            <item>
+                <div class="row">
+                    <div class="col-4">
+                        <h2><%= data.item.title %></h2>
+                        <img
+                        src=<%= data.item.featureImage %>
+                        alt="feature Image"
+                        style="width:100%"
+                        />
+                    </div>
+
+                    <div class="col-8"><br />
+                        <div class="row">
+                        <div class="col-12">
+                            <p>
+                                <%= data.item.body || "massa non ante bibendum ullamcorper. Duis cursus, diam at pretium" %>
+                            </p>
+                            <strong>Price:</strong> $<%= data.item.price || "00.00" %><br />
+                            <strong>Category:</strong> <%= data.item.category %><br />
+                            <strong>Last Updated:</strong> <%= new Date(data.item.postDate).toLocaleDateString() %>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </item>
+            <br><br>
+            <h1>You may look like</h1>
+            <hr>
+        <% } %>
+        <div class="container">
+            <% if (data.items) { %>
+                <% data.items.forEach(item => { %>
+                    <item>
+                        <div class="row">
+                            <div class="col-4">
+                                <h2><%= item.title %></h2>
+                                <img
+                                    src=<%= item.featureImage %>
+                                    alt="feature Image"
+                                    style="width:100%"
+                                />
+                            </div>
+                        
+                            <div class="col-8"><br />
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            <%= item.body || "massa non ante bibendum ullamcorper. Duis cursus, diam at pretium" %>
+                                        </p>
+                                        <strong>Price:</strong> $<%= item.price || "00.00" %><br />
+                                        <strong>Category:</strong> <%= item.category %><br />
+                                        <strong>Last Updated:</strong> <%= new Date(item.postDate).toLocaleDateString() %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </item>
+                    <hr>
+                <% }) %>
+            <% } else { %>
+                <br><br><br>
+                <h3>There is no item to show...</h3>
+            <% } %>
+        </div>
+    </section>
+  
+    <aside class="col-md-3">
+        <br /><br />
+        <h4>Items</h4>
+  
+        <ul class="list-group" style="background-color: black; color: white;">
+            <% if (data.items) { %>
+                <% data.items.forEach(item => { %>
+                    <a href="/shop/<%= item.id %>" 
+                    class="list-group-item" 
+                    style="background-color: black; color: white;">
+                        <%= item.id %>
+                    </a>
+                <% }) %>
+            <% } else { %>
+                <img
+                    src="/mark.png"
+                    alt="mark_meritt"
+                    style="opacity: 0.2"
+                />
+            <% } %>
+        </ul>
+
+        <br /><br />
+        <h4>Categories</h4>
+
+        <ul class="list-group" style="background-color: black; color: white;">
+            <% if (data.items) { %>
+                <% data.categories.forEach(category => { %>
+                    <a href="/items?category=<%= category.id %>" 
+                    class="list-group-item"
+                    style="background-color: black; color: white;">
+                        <%= category.category %>
+                    </a>
+                <% }) %>
+            <% } else { %>
+                <img
+                    src="/mark.png"
+                    alt="mark_meritt"
+                    style="opacity: 0.2"
+                />
+            <% } %>
+        </ul>
+    </aside>
+</div>

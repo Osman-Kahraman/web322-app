@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <h2>Categories 
+        <a href="/categories/add" class="c3">+</a>
+    </h2>
+    <br>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+                <th></th> <!-- Empty header for delete column -->
+            </tr>
+        </thead>
+        <tbody>
+            <% categories.forEach(category => { %>
+            <tr>
+                <td>
+                    <a href="/items?category=<%= category.id %>"><%= category.id %></a>
+                </td>
+                <td>
+                    <a href="/items?category=<%= category.id %>"><%= category.category %></a>
+                </td>
+                <td class="text-right">
+                    <a href="/categories/delete/<%= category.id %>" 
+                       class="c2" 
+                       onclick="return confirm('Are you sure you want to delete this category buddy?');">
+                        x
+                    </a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

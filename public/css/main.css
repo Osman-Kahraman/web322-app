@@ -64,6 +64,10 @@ footer {
     mix-blend-mode: difference;
 }
 
+th, hr {
+    color: #fff;
+}
+
 .name {
     width: 100%;
     text-decoration: none;
@@ -71,6 +75,10 @@ footer {
     font-size: 30px;
     font-weight: 700;
     text-align: center;
+}
+
+.col-12 {
+    color: #fff;
 }
 
 a, 
@@ -84,7 +92,11 @@ a span {
     padding: 0 2em;
 }
 
-h2 {
+td {
+    color: #fff;
+}
+
+h1, h2, h3, h4 {
     color: #fff;
 }
 
@@ -114,6 +126,100 @@ footer {
     object-fit: contain;
     align-content: center;
     text-align: center;
+}
+
+.c2 {
+    overflow: hidden;
+    background-color: #930808;
+    align-items: center;
+    display: inline-flex;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    float: none;
+    appearance: none;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      #855e5e 0 -3px 0 inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: "Doto", serif;
+    height: 32px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+}
+  
+.c2:focus {
+    box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  }
+  
+.c2:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#d6d6e7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+  
+.c2:active {
+    box-shadow: #d6d6e7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.c3 {
+    overflow: hidden;
+    background-color: #238a09;
+    align-items: center;
+    display: inline-flex;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    float: none;
+    appearance: none;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      #6fcd79 0 -3px 0 inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: "Doto", serif;
+    height: 36px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+}
+  
+.c3:focus {
+    box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  }
+  
+.c3:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#d6d6e7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+  
+.c3:active {
+    box-shadow: #d6d6e7 0 3px 7px inset;
+    transform: translateY(2px);
 }
 
 .c4 {
@@ -262,6 +368,15 @@ footer {
     box-shadow: 0 0 0 0.25em var(--c-primary-20-percent-opacity);
 }
 
+#border-glow {
+    box-shadow: 0px 0px 30px rgba(195, 195, 195, 0.75);
+    -webkit-box-shadow: 0px 0px 30px rgba(195, 195, 195, 0.75);
+    -moz-box-shadow: 0px 0px 30px rgba(195, 195, 195, 0.75);
+    border-radius: 12px;
+    border: 15px; 
+    border-color: white; 
+}
+  
 #fade-in {
     animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;
