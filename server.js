@@ -1,10 +1,10 @@
 /*********************************************************************************
-WEB322 – Assignment 05
+WEB322 – Assignment 06
 I declare that this assignment is my own work in accordance with Seneca Academic Policy. No part * of this assignment has
 been copied manually or electronically from any other source (including 3rd party web sites) or distributed to other students.
 Name: Osman KAHRAMAN
 Student ID: 172781221
-Date: 08/04/2025
+Date: 11/04/2025
 Cyclic Web App URL: https://replit.com/@okahraman2/web322-app
 https://replit.com/@okahraman2/web322-app?v=1
 GitHub Repository URL: https://github.com/Osman-Kahraman/web322-app
@@ -12,17 +12,26 @@ GitHub Repository URL: https://github.com/Osman-Kahraman/web322-app
 
 const express = require('express');
 const path = require('path');
-const storeService = require('./store-service');
 const multer = require("multer");
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
 const expressLayouts = require('express-ejs-layouts');
-const fs = require('fs');
+const clientSessions = require('client-sessions');
+const storeService = require('./store-service');
+const authData = require('./auth-service');
 
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
 app.use(expressLayouts);
+app.use(
+    clientSessions({
+      cookieName: 'session', // this is the object name that will be added to 'req'
+      secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', // this should be a long un-guessable string.
+      duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
+      activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
+    })
+  );
 app.set('layout', 'layouts/main');
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
@@ -37,12 +46,12 @@ cloudinary.config({
 const upload = multer(); 
 
 storeService.initialize()
+    .then(authData.initialize)
     .then(() => {
         //start the server 
         app.listen(HTTP_PORT, () => console.log(`Express http server listening on ${HTTP_PORT}`));
     })
     .catch(err => {
-        /*output the error to the console */
         console.error("Initialization failed:", err);
         process.exit(1);
     });
@@ -67,11 +76,86 @@ app.use((req, res, next) => {
     app.locals.viewingCategory = req.query.category;
     res.locals.pageTitle = "";
     res.locals.activeRoute = req.path;
+    res.locals.session = req.session;
     next();
 });
 
 app.get('/', (req, res) => {
     res.render('template');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login', { 
+        errorMessage: null,
+        userName: null,
+        password: null
+    })
+});
+
+app.post('/login', (req, res) => {
+    req.body.userAgent = req.get('User-Agent');
+    authData.checkUser(req.body)
+        .then(user => {
+            req.session.user = {
+                userName: user.userName,
+                email: user.email,
+                loginHistory: user.loginHistory
+            }
+            res.redirect('/items');
+        })
+        .catch(err => res.render('login', {
+            errorMessage: err,
+            userName: req.body.userName,
+        }));
+});
+
+app.get('/logout', (req, res) => {
+    req.session.reset();
+    res.redirect('/');
+});
+
+app.get('/userHistory', ensureLogin, (req, res) => {
+    res.render('userHistory');
+});
+
+app.get('/register', (req, res) => {
+    res.render('register', { 
+        successMessage: null,
+        errorMessage: null,
+        userName: null
+    });
+});
+
+app.post('/register', (req, res) => {
+    authData.registerUser(req.body)
+        .then(() => res.render('register', { 
+            successMessage: "User created", 
+            errorMessage: null,
+            userName: req.body.userName 
+        }))
+        .catch(err => res.render('register', { 
+            errorMessage: err, 
+            successMessage: null,
+            userName: req.body.userName 
+        }));
+});
+
+app.get('/layout', (req, res) => {
+    req.session.reset();
+    res.redirect('/');
+});
+
+function ensureLogin(req, res, next) {
+    if (!req.session.user) {
+        res.redirect('/login');
+    }
+    else {
+        next();
+    }
+}
+
+app.get('/userHistory', ensureLogin, (req, res) => {
+    res.render('userHistory');
 });
 
 app.get('/about', (req, res) => {
@@ -165,7 +249,7 @@ app.get('/shop/:id', async (req, res) => {
     res.render("shop", {data: viewData})
   });
 
-app.get('/items', (req, res) => {
+app.get('/items', ensureLogin, (req, res) => {
     if (req.query.category) {
         const category = parseInt(req.query.category);
         if (isNaN(category) || category < 1 || category > 5) {

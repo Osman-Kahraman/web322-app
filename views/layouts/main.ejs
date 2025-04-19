@@ -32,8 +32,10 @@
                         <ul class="navbar-nav">
                             <%- navLink('/shop', 'Shop') %>
                             <%- navLink('/about', 'About') %>
-                            <%- navLink('/items', 'Items') %>
-                            <%- navLink('/categories', 'Categories') %>
+                            <% if (session.user) { %>
+                                <%- navLink('/items', 'Items') %>
+                                <%- navLink('/categories', 'Categories') %>
+                            <% } %>
                         </ul>
                     </div>
                     <div style="float: right;">
@@ -56,6 +58,18 @@
                                     height="30"
                                 /></a>
                             </li>
+                            <% if (session.user) { %>
+                                <li><a href="#" style="padding: 20px;"><%- session.user.userName %></a>
+                                <ul>
+                                    <li><a href="/userHistory" style="padding: 20px;">User History</a></li>
+                                    <li><a href="/logout" style="padding: 20px;">Log Out</a></li>
+                                </ul>
+                            <% } else { %>
+                                <ul class="navbar-nav">
+                                    <%- navLink('/register', 'Register') %>
+                                    <%- navLink('/login', 'LOGIN') %>
+                                </ul>
+                            <% } %>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

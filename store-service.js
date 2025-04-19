@@ -1,6 +1,3 @@
-const fs = require('fs').promises;
-const { raw } = require('express');
-const path = require('path');
 const Sequelize = require('sequelize');
 
 var sequelize = new Sequelize({

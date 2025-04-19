@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Register</h2>
+    <% if (successMessage) { %>
+        <div class="alert alert-success">
+            <strong>Success:</strong> <%= successMessage %>
+        </div>
+        <br>
+        <a href="/login" class="c3">Proceed to Log in</a>
+        <br><br><br>
+    <% } else { %>
+        <% if (errorMessage) { %>
+            <div class="alert alert-danger">
+                <strong>Error:</strong> <%= errorMessage %>
+            </div>
+        <% } %>
+        <form method="post" action="/register">
+            <div class="form-group">
+                <label for="userName">User Name:</label>
+                <input class="form-control" id="userName" name="userName" 
+                       value="<%= userName || '' %>" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+            </div>
+            <br>
+            <button type="submit" class="c3">Register</button>
+        </form>
+    <% } %>
+</div>
